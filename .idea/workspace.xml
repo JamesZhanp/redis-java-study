@@ -1,0 +1,825 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="15afdef5-76d8-45b7-9aa0-aaec010b2eac" name="Default Changelist" comment="" />
+    <ignored path="$PROJECT_DIR$/out/" />
+    <ignored path="$PROJECT_DIR$/redis-01-jedis/target/" />
+    <ignored path="$PROJECT_DIR$/redis-02-springboot/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/redis-02-springboot/src/main/java/com/james/redis02springboot/pojo/User.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="86">
+              <caret line="11" column="25" lean-forward="true" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/redis-02-springboot/src/main/java/com/james/redis02springboot/utils/RedisUtils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1376">
+              <caret line="496" column="1" selection-start-line="496" selection-start-column="1" selection-end-line="496" selection-end-column="1" />
+              <folding>
+                <element signature="docComment;class#RedisUtils#0" />
+                <element signature="docComment;method#expire#0;class#RedisUtils#0" />
+                <element signature="method#expire#0;class#RedisUtils#0" />
+                <element signature="e#579#729#0" />
+                <element signature="e#607#694#1" />
+                <element signature="e#748#849#0" />
+                <element signature="docComment;method#getExpire#0;class#RedisUtils#0" />
+                <element signature="n#!!block;n#getExpire#0;n#RedisUtils#0" />
+                <element signature="docComment;method#hasKey#0;class#RedisUtils#0" />
+                <element signature="method#hasKey#0;class#RedisUtils#0" />
+                <element signature="e#1158#1220#0" />
+                <element signature="e#1486#1570#0" />
+                <element signature="docComment;method#del#0;class#RedisUtils#0" />
+                <element signature="method#del#0;class#RedisUtils#0" />
+                <element signature="e#1703#1910#1" />
+                <element signature="e#1737#1803#1" />
+                <element signature="e#1808#1900#1" />
+                <element signature="docComment;method#get#0;class#RedisUtils#0" />
+                <element signature="n#!!block;n#get#0;n#RedisUtils#0" />
+                <element signature="docComment;method#set#0;class#RedisUtils#0" />
+                <element signature="method#set#0;class#RedisUtils#0" />
+                <element signature="e#2251#2349#0" />
+                <element signature="e#2368#2452#0" />
+                <element signature="docComment;method#set#1;class#RedisUtils#0" />
+                <element signature="method#set#1;class#RedisUtils#0" />
+                <element signature="e#2640#2863#0" />
+                <element signature="e#2668#2772#1" />
+                <element signature="e#2789#2828#1" />
+                <element signature="e#2865#2949#0" />
+                <element signature="docComment;method#incr#0;class#RedisUtils#0" />
+                <element signature="method#incr#0;class#RedisUtils#0" />
+                <element signature="e#3105#3169#1" />
+                <element signature="e#3203#3289#1" />
+                <element signature="docComment;method#decr#0;class#RedisUtils#0" />
+                <element signature="method#decr#0;class#RedisUtils#0" />
+                <element signature="e#3404#3468#1" />
+                <element signature="e#3513#3591#1" />
+                <element signature="docComment;method#hget#0;class#RedisUtils#0" />
+                <element signature="n#!!block;n#hget#0;n#RedisUtils#0" />
+                <element signature="docComment;method#hmget#0;class#RedisUtils#0" />
+                <element signature="n#!!block;n#hmget#0;n#RedisUtils#0" />
+                <element signature="docComment;method#hmset#0;class#RedisUtils#0" />
+                <element signature="method#hmset#0;class#RedisUtils#0" />
+                <element signature="e#4106#4204#0" />
+                <element signature="e#4223#4307#0" />
+                <element signature="docComment;method#hmset#1;class#RedisUtils#0" />
+                <element signature="method#hmset#1;class#RedisUtils#0" />
+                <element signature="e#4508#4688#0" />
+                <element signature="e#4598#4653#1" />
+                <element signature="e#4707#4791#0" />
+                <element signature="docComment;method#hset#0;class#RedisUtils#0" />
+                <element signature="method#hset#0;class#RedisUtils#0" />
+                <element signature="e#4988#5091#0" />
+                <element signature="e#5110#5194#0" />
+                <element signature="docComment;method#hset#1;class#RedisUtils#0" />
+                <element signature="method#hset#1;class#RedisUtils#0" />
+                <element signature="e#5535#5707#0" />
+                <element signature="e#5630#5672#1" />
+                <element signature="e#5650#5734#0" />
+                <element signature="docComment;method#hdel#0;class#RedisUtils#0" />
+                <element signature="n#!!block;n#hdel#0;n#RedisUtils#0" />
+                <element signature="docComment;method#hHasKey#0;class#RedisUtils#0" />
+                <element signature="n#!!block;n#hHasKey#0;n#RedisUtils#0" />
+                <element signature="docComment;method#hincr#0;class#RedisUtils#0" />
+                <element signature="method#hincr#0;class#RedisUtils#0" />
+                <element signature="docComment;method#hdecr#0;class#RedisUtils#0" />
+                <element signature="method#hdecr#0;class#RedisUtils#0" />
+                <element signature="docComment;method#sGet#0;class#RedisUtils#0" />
+                <element signature="method#sGet#0;class#RedisUtils#0" />
+                <element signature="e#6793#6868#0" />
+                <element signature="e#6887#6970#0" />
+                <element signature="docComment;method#sHasKey#0;class#RedisUtils#0" />
+                <element signature="method#sHasKey#0;class#RedisUtils#0" />
+                <element signature="e#7140#7223#0" />
+                <element signature="e#7242#7326#0" />
+                <element signature="docComment;method#sSet#0;class#RedisUtils#0" />
+                <element signature="method#sSet#0;class#RedisUtils#0" />
+                <element signature="e#7486#7564#0" />
+                <element signature="e#7583#7664#0" />
+                <element signature="docComment;method#sSetAndTime#0;class#RedisUtils#0" />
+                <element signature="method#sSetAndTime#0;class#RedisUtils#0" />
+                <element signature="e#7841#8034#0" />
+                <element signature="e#7943#7998#1" />
+                <element signature="e#8053#8134#0" />
+                <element signature="docComment;method#sGetSetSize#0;class#RedisUtils#0" />
+                <element signature="method#sGetSetSize#0;class#RedisUtils#0" />
+                <element signature="e#8264#8336#0" />
+                <element signature="e#8355#8436#0" />
+                <element signature="docComment;method#lGet#0;class#RedisUtils#0" />
+                <element signature="method#lGet#0;class#RedisUtils#0" />
+                <element signature="e#8625#8711#0" />
+                <element signature="e#8730#8813#0" />
+                <element signature="docComment;method#lGetListSize#0;class#RedisUtils#0" />
+                <element signature="method#lGetListSize#0;class#RedisUtils#0" />
+                <element signature="e#8943#9016#0" />
+                <element signature="e#9035#9116#0" />
+                <element signature="docComment;method#lGetIndex#0;class#RedisUtils#0" />
+                <element signature="method#lGetIndex#0;class#RedisUtils#0" />
+                <element signature="e#9282#9363#0" />
+                <element signature="e#9382#9463#0" />
+                <element signature="docComment;method#lSet#0;class#RedisUtils#0" />
+                <element signature="method#lSet#0;class#RedisUtils#0" />
+                <element signature="e#9620#9723#0" />
+                <element signature="e#9742#9826#0" />
+                <element signature="method#lSet#1;class#RedisUtils#0" />
+                <element signature="e#9907#10092#0" />
+                <element signature="e#10002#10057#1" />
+                <element signature="e#10111#10195#0" />
+                <element signature="method#lSet#2;class#RedisUtils#0" />
+                <element signature="e#10270#10376#0" />
+                <element signature="e#10395#10479#0" />
+                <element signature="method#lSet#3;class#RedisUtils#0" />
+                <element signature="e#10566#10754#0" />
+                <element signature="e#10664#10719#1" />
+                <element signature="e#10773#10857#0" />
+                <element signature="docComment;method#lUpdateIndex#0;class#RedisUtils#0" />
+                <element signature="method#lUpdateIndex#0;class#RedisUtils#0" />
+                <element signature="e#11064#11168#0" />
+                <element signature="e#11187#11271#0" />
+                <element signature="docComment;method#lRemove#0;class#RedisUtils#0" />
+                <element signature="method#lRemove#0;class#RedisUtils#0" />
+                <element signature="e#11462#11585#0" />
+                <element signature="e#11604#11685#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/redis-02-springboot/src/test/java/com/james/redis02springboot/Redis02SpringbootApplicationTests.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="437">
+              <caret line="23" column="44" lean-forward="true" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>redis</find>
+      <find>this.logger.error(ExceptionUtils.getStackTrace(e));</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>this.logger.error(e.getMessage());</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/redis-01-jedis/pom.xml" />
+        <option value="$PROJECT_DIR$/redis-01-jedis/src/main/java/com/james/TestPing.java" />
+        <option value="$PROJECT_DIR$/redis-01-jedis/src/main/java/com/james/TestTransaction.java" />
+        <option value="$PROJECT_DIR$/redis-02-springboot/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/redis-02-springboot/src/main/java/com/james/redis02springboot/pojo/User.java" />
+        <option value="$PROJECT_DIR$/redis-02-springboot/src/main/java/com/james/redis02springboot/config/RedisConfig.java" />
+        <option value="$PROJECT_DIR$/redis-02-springboot/src/main/java/com/james/redis02springboot/utils/RedisUtils.java" />
+        <option value="$PROJECT_DIR$/redis-02-springboot/src/test/java/com/james/redis02springboot/Redis02SpringbootApplicationTests.java" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+        <option name="vmOptionsForImporter" value="-Xmx768m" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand />
+      <select />
+    </treeState>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="718" />
+    <option name="y" value="-22" />
+    <option name="width" value="980" />
+    <option name="height" value="1100" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="jdk.selected.JAVA_MODULE" value="1.8" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="JUnit.Redis02SpringbootApplicationTests.testRedisUtils">
+    <configuration name="TestPing" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.james.TestPing" />
+      <module name="redis-01-jedis" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.james.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestTransaction" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.james.TestTransaction" />
+      <module name="redis-01-jedis" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.james.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Redis02SpringbootApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="redis-02-springboot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.james.redis02springboot.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.james.redis02springboot" />
+      <option name="MAIN_CLASS_NAME" value="com.james.redis02springboot.Redis02SpringbootApplicationTests" />
+      <option name="METHOD_NAME" value="contextLoads" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Redis02SpringbootApplicationTests.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="redis-02-springboot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.james.redis02springboot.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.james.redis02springboot" />
+      <option name="MAIN_CLASS_NAME" value="com.james.redis02springboot.Redis02SpringbootApplicationTests" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Redis02SpringbootApplicationTests.testRedisUtils" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="redis-02-springboot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.james.redis02springboot.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.james.redis02springboot" />
+      <option name="MAIN_CLASS_NAME" value="com.james.redis02springboot.Redis02SpringbootApplicationTests" />
+      <option name="METHOD_NAME" value="testRedisUtils" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Redis02SpringbootApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="redis-02-springboot" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.james.redis02springboot.Redis02SpringbootApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.Redis02SpringbootApplicationTests.testRedisUtils" />
+        <item itemvalue="JUnit.Redis02SpringbootApplicationTests.test" />
+        <item itemvalue="JUnit.Redis02SpringbootApplicationTests.contextLoads" />
+        <item itemvalue="Application.TestTransaction" />
+        <item itemvalue="Application.TestPing" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="15afdef5-76d8-45b7-9aa0-aaec010b2eac" name="Default Changelist" comment="" />
+      <created>1606829816359</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1606829816359</updated>
+      <workItem from="1606829818656" duration="3924000" />
+      <workItem from="1606835045230" duration="5376000" />
+    </task>
+    <task id="LOCAL-00001" summary="add study markdown file">
+      <created>1606840412987</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1606840412988</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="Redis02SpringbootApplicationTests_contextLoads - 2020.12.01 at 23h 32m 54s.xml">
+      <configuration name="Redis02SpringbootApplicationTests.contextLoads" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Redis02SpringbootApplicationTests_test - 2020.12.01 at 23h 50m 23s.xml">
+      <configuration name="Redis02SpringbootApplicationTests.test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Redis02SpringbootApplicationTests_test - 2020.12.01 at 23h 52m 20s.xml">
+      <configuration name="Redis02SpringbootApplicationTests.test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Redis02SpringbootApplicationTests_test - 2020.12.02 at 00h 08m 12s.xml">
+      <configuration name="Redis02SpringbootApplicationTests.test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Redis02SpringbootApplicationTests_test - 2020.12.02 at 00h 09m 23s.xml">
+      <configuration name="Redis02SpringbootApplicationTests.test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Redis02SpringbootApplicationTests_testRedisUtils - 2020.12.02 at 00h 22m 24s.xml">
+      <configuration name="Redis02SpringbootApplicationTests.testRedisUtils" configurationId="JUnit" />
+    </history-entry>
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="9300000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Web" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.288874" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Spring" />
+      <window_info anchor="bottom" id="Java Enterprise" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3587684" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Database Changes" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.32797858" />
+      <window_info anchor="right" id="Bean Validation" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Database" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Maven" order="6" weight="0.3297587" />
+      <window_info anchor="right" id="Capture Analysis" order="7" />
+      <window_info anchor="right" id="Palette&#9;" order="8" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add study markdown file" />
+    <option name="LAST_COMMIT_MESSAGE" value="add study markdown file" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="jar://$USER_HOME$/.m2/repository/redis/clients/jedis/3.2.0/jedis-3.2.0.jar!/redis/clients/jedis/Jedis.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/redis/clients/jedis/3.2.0/jedis-3.2.0.jar!/redis/clients/jedis/BinaryJedis.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="367" column="18" selection-start-line="367" selection-start-column="18" selection-end-line="367" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/redis-01-jedis/src/main/java/com/james/TestTransaction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/redis-01-jedis/src/main/java/com/james/TestPing.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="12" column="36" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/redis-01-jedis/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="21" column="37" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.m2/repository/org/springframework/boot/spring-boot-starter-data-redis/2.2.11.RELEASE/spring-boot-starter-data-redis-2.2.11.RELEASE.pom">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="43" selection-start-line="43" selection-end-line="68" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/boot/spring-boot-starter-data-redis/2.2.11.RELEASE/spring-boot-starter-data-redis-2.2.11.RELEASE.jar!/META-INF/MANIFEST.MF">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/2.2.11.RELEASE/spring-boot-autoconfigure-2.2.11.RELEASE.jar!/org/springframework/boot/autoconfigure/data/redis/RedisAutoConfiguration.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/data/spring-data-redis/2.2.11.RELEASE/spring-data-redis-2.2.11.RELEASE.jar!/org/springframework/data/redis/connection/lettuce/LettuceConnectionFactory.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="67" column="137" selection-start-line="67" selection-start-column="107" selection-end-line="67" selection-end-column="137" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/data/spring-data-redis/2.2.11.RELEASE/spring-data-redis-2.2.11.RELEASE.jar!/org/springframework/data/redis/connection/jedis/JedisConnectionFactory.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="61" column="56" lean-forward="true" selection-start-line="61" selection-start-column="56" selection-end-line="61" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/data/spring-data-redis/2.2.11.RELEASE/spring-data-redis-2.2.11.RELEASE.jar!/org/springframework/data/redis/connection/RedisConnectionFactory.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="9" column="30" lean-forward="true" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/2.2.11.RELEASE/spring-boot-autoconfigure-2.2.11.RELEASE.jar!/META-INF/spring.factories">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="56" column="57" selection-start-line="56" selection-start-column="57" selection-end-line="56" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/2.2.11.RELEASE/spring-boot-autoconfigure-2.2.11.RELEASE-sources.jar!/org/springframework/boot/autoconfigure/data/redis/RedisProperties.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="35" column="13" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/redis-02-springboot/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="20" selection-start-line="20" selection-end-line="58" />
+          <folding>
+            <element signature="n#dependencies#0;n#project#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/2.2.11.RELEASE/spring-boot-autoconfigure-2.2.11.RELEASE-sources.jar!/org/springframework/boot/autoconfigure/data/redis/LettuceConnectionConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="68" column="55" selection-start-line="68" selection-start-column="55" selection-end-line="68" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/redis-02-springboot/src/main/java/com/james/redis02springboot/Redis02SpringbootApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/redis-02-springboot/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="1" selection-start-line="1" selection-end-line="2" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/2.2.11.RELEASE/spring-boot-autoconfigure-2.2.11.RELEASE-sources.jar!/org/springframework/boot/autoconfigure/data/redis/RedisAutoConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="56" column="59" selection-start-line="56" selection-start-column="59" selection-end-line="56" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/redis-02-springboot/src/main/java/com/james/redis02springboot/config/RedisConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="27" column="41" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/data/spring-data-redis/2.2.11.RELEASE/spring-data-redis-2.2.11.RELEASE.jar!/org/springframework/data/redis/core/RedisTemplate.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="47" column="13" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/redis-02-springboot/src/main/java/com/james/redis02springboot/pojo/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="86">
+          <caret line="11" column="25" lean-forward="true" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/redis-02-springboot/src/main/java/com/james/redis02springboot/utils/RedisUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1376">
+          <caret line="496" column="1" selection-start-line="496" selection-start-column="1" selection-end-line="496" selection-end-column="1" />
+          <folding>
+            <element signature="docComment;class#RedisUtils#0" />
+            <element signature="docComment;method#expire#0;class#RedisUtils#0" />
+            <element signature="method#expire#0;class#RedisUtils#0" />
+            <element signature="e#579#729#0" />
+            <element signature="e#607#694#1" />
+            <element signature="e#748#849#0" />
+            <element signature="docComment;method#getExpire#0;class#RedisUtils#0" />
+            <element signature="n#!!block;n#getExpire#0;n#RedisUtils#0" />
+            <element signature="docComment;method#hasKey#0;class#RedisUtils#0" />
+            <element signature="method#hasKey#0;class#RedisUtils#0" />
+            <element signature="e#1158#1220#0" />
+            <element signature="e#1486#1570#0" />
+            <element signature="docComment;method#del#0;class#RedisUtils#0" />
+            <element signature="method#del#0;class#RedisUtils#0" />
+            <element signature="e#1703#1910#1" />
+            <element signature="e#1737#1803#1" />
+            <element signature="e#1808#1900#1" />
+            <element signature="docComment;method#get#0;class#RedisUtils#0" />
+            <element signature="n#!!block;n#get#0;n#RedisUtils#0" />
+            <element signature="docComment;method#set#0;class#RedisUtils#0" />
+            <element signature="method#set#0;class#RedisUtils#0" />
+            <element signature="e#2251#2349#0" />
+            <element signature="e#2368#2452#0" />
+            <element signature="docComment;method#set#1;class#RedisUtils#0" />
+            <element signature="method#set#1;class#RedisUtils#0" />
+            <element signature="e#2640#2863#0" />
+            <element signature="e#2668#2772#1" />
+            <element signature="e#2789#2828#1" />
+            <element signature="e#2865#2949#0" />
+            <element signature="docComment;method#incr#0;class#RedisUtils#0" />
+            <element signature="method#incr#0;class#RedisUtils#0" />
+            <element signature="e#3105#3169#1" />
+            <element signature="e#3203#3289#1" />
+            <element signature="docComment;method#decr#0;class#RedisUtils#0" />
+            <element signature="method#decr#0;class#RedisUtils#0" />
+            <element signature="e#3404#3468#1" />
+            <element signature="e#3513#3591#1" />
+            <element signature="docComment;method#hget#0;class#RedisUtils#0" />
+            <element signature="n#!!block;n#hget#0;n#RedisUtils#0" />
+            <element signature="docComment;method#hmget#0;class#RedisUtils#0" />
+            <element signature="n#!!block;n#hmget#0;n#RedisUtils#0" />
+            <element signature="docComment;method#hmset#0;class#RedisUtils#0" />
+            <element signature="method#hmset#0;class#RedisUtils#0" />
+            <element signature="e#4106#4204#0" />
+            <element signature="e#4223#4307#0" />
+            <element signature="docComment;method#hmset#1;class#RedisUtils#0" />
+            <element signature="method#hmset#1;class#RedisUtils#0" />
+            <element signature="e#4508#4688#0" />
+            <element signature="e#4598#4653#1" />
+            <element signature="e#4707#4791#0" />
+            <element signature="docComment;method#hset#0;class#RedisUtils#0" />
+            <element signature="method#hset#0;class#RedisUtils#0" />
+            <element signature="e#4988#5091#0" />
+            <element signature="e#5110#5194#0" />
+            <element signature="docComment;method#hset#1;class#RedisUtils#0" />
+            <element signature="method#hset#1;class#RedisUtils#0" />
+            <element signature="e#5535#5707#0" />
+            <element signature="e#5630#5672#1" />
+            <element signature="e#5650#5734#0" />
+            <element signature="docComment;method#hdel#0;class#RedisUtils#0" />
+            <element signature="n#!!block;n#hdel#0;n#RedisUtils#0" />
+            <element signature="docComment;method#hHasKey#0;class#RedisUtils#0" />
+            <element signature="n#!!block;n#hHasKey#0;n#RedisUtils#0" />
+            <element signature="docComment;method#hincr#0;class#RedisUtils#0" />
+            <element signature="method#hincr#0;class#RedisUtils#0" />
+            <element signature="docComment;method#hdecr#0;class#RedisUtils#0" />
+            <element signature="method#hdecr#0;class#RedisUtils#0" />
+            <element signature="docComment;method#sGet#0;class#RedisUtils#0" />
+            <element signature="method#sGet#0;class#RedisUtils#0" />
+            <element signature="e#6793#6868#0" />
+            <element signature="e#6887#6970#0" />
+            <element signature="docComment;method#sHasKey#0;class#RedisUtils#0" />
+            <element signature="method#sHasKey#0;class#RedisUtils#0" />
+            <element signature="e#7140#7223#0" />
+            <element signature="e#7242#7326#0" />
+            <element signature="docComment;method#sSet#0;class#RedisUtils#0" />
+            <element signature="method#sSet#0;class#RedisUtils#0" />
+            <element signature="e#7486#7564#0" />
+            <element signature="e#7583#7664#0" />
+            <element signature="docComment;method#sSetAndTime#0;class#RedisUtils#0" />
+            <element signature="method#sSetAndTime#0;class#RedisUtils#0" />
+            <element signature="e#7841#8034#0" />
+            <element signature="e#7943#7998#1" />
+            <element signature="e#8053#8134#0" />
+            <element signature="docComment;method#sGetSetSize#0;class#RedisUtils#0" />
+            <element signature="method#sGetSetSize#0;class#RedisUtils#0" />
+            <element signature="e#8264#8336#0" />
+            <element signature="e#8355#8436#0" />
+            <element signature="docComment;method#lGet#0;class#RedisUtils#0" />
+            <element signature="method#lGet#0;class#RedisUtils#0" />
+            <element signature="e#8625#8711#0" />
+            <element signature="e#8730#8813#0" />
+            <element signature="docComment;method#lGetListSize#0;class#RedisUtils#0" />
+            <element signature="method#lGetListSize#0;class#RedisUtils#0" />
+            <element signature="e#8943#9016#0" />
+            <element signature="e#9035#9116#0" />
+            <element signature="docComment;method#lGetIndex#0;class#RedisUtils#0" />
+            <element signature="method#lGetIndex#0;class#RedisUtils#0" />
+            <element signature="e#9282#9363#0" />
+            <element signature="e#9382#9463#0" />
+            <element signature="docComment;method#lSet#0;class#RedisUtils#0" />
+            <element signature="method#lSet#0;class#RedisUtils#0" />
+            <element signature="e#9620#9723#0" />
+            <element signature="e#9742#9826#0" />
+            <element signature="method#lSet#1;class#RedisUtils#0" />
+            <element signature="e#9907#10092#0" />
+            <element signature="e#10002#10057#1" />
+            <element signature="e#10111#10195#0" />
+            <element signature="method#lSet#2;class#RedisUtils#0" />
+            <element signature="e#10270#10376#0" />
+            <element signature="e#10395#10479#0" />
+            <element signature="method#lSet#3;class#RedisUtils#0" />
+            <element signature="e#10566#10754#0" />
+            <element signature="e#10664#10719#1" />
+            <element signature="e#10773#10857#0" />
+            <element signature="docComment;method#lUpdateIndex#0;class#RedisUtils#0" />
+            <element signature="method#lUpdateIndex#0;class#RedisUtils#0" />
+            <element signature="e#11064#11168#0" />
+            <element signature="e#11187#11271#0" />
+            <element signature="docComment;method#lRemove#0;class#RedisUtils#0" />
+            <element signature="method#lRemove#0;class#RedisUtils#0" />
+            <element signature="e#11462#11585#0" />
+            <element signature="e#11604#11685#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/redis-02-springboot/src/test/java/com/james/redis02springboot/Redis02SpringbootApplicationTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="23" column="44" lean-forward="true" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>redis-01-jedis</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

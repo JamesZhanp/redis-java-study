@@ -996,3 +996,205 @@ public class RedisConfig {
 
 }
 ```
+
+
+
+## Redis 配置文件
+
+> 配置单位大小写不敏感
+
+```bash
+# Redis configuration file example.
+#
+# Note that in order to read the configuration file, Redis must be
+# started with the file path as first argument:
+#
+# ./redis-server /path/to/redis.conf
+
+# Note on units: when memory size is needed, it is possible to specify
+# it in the usual form of 1k 5GB 4M and so forth:
+#
+# 1k => 1000 bytes
+# 1kb => 1024 bytes
+# 1m => 1000000 bytes
+# 1mb => 1024*1024 bytes
+# 1g => 1000000000 bytes
+# 1gb => 1024*1024*1024 bytes
+#
+# units are case insensitive so 1GB 1Gb 1gB are all the same.
+
+```
+
+> config 包含
+
+```bash
+################################## INCLUDES ###################################
+
+# Include one or more other config files here.  This is useful if you
+# have a standard template that goes to all Redis servers but also need
+# to customize a few per-server settings.  Include files can include
+# other files, so use this wisely.
+#
+# Notice option "include" won't be rewritten by command "CONFIG REWRITE"
+# from admin or Redis Sentinel. Since Redis always uses the last processed
+# line as value of a configuration directive, you'd better put includes
+# at the beginning of this file to avoid overwriting config change at runtime.
+#
+# If instead you are interested in using includes to override configuration
+# options, it is better to use include as the last line.
+#
+# include /path/to/local.conf
+# include /path/to/other.conf
+
+```
+
+> 网络配置
+
+```bash
+################################## NETWORK #####################################
+
+# By default, if no "bind" configuration directive is specified, Redis listens
+# for connections from all the network interfaces available on the server.
+# It is possible to listen to just one or multiple selected interfaces using
+# the "bind" configuration directive, followed by one or more IP addresses.
+#
+# Examples:
+#
+# bind 192.168.1.100 10.0.0.1
+# bind 127.0.0.1 ::1
+#
+# ~~~ WARNING ~~~ If the computer running Redis is directly exposed to the
+# internet, binding to all the interfaces is dangerous and will expose the
+# instance to everybody on the internet. So by default we uncomment the
+# following bind directive, that will force Redis to listen only into
+# the IPv4 lookback interface address (this means Redis will be able to
+# accept connections only from clients running into the same computer it
+# is running).
+#
+# IF YOU ARE SURE YOU WANT YOUR INSTANCE TO LISTEN TO ALL THE INTERFACES
+# JUST COMMENT THE FOLLOWING LINE.
+
+bind 127.0.0.1 # 绑定ip 远程连接的时候需要注释
+protected-mode yes # 保护模式
+port 6379# 端口设置
+```
+
+
+
+> 通用general
+
+```bash
+daemonize yes    # 以守护进程的方式进行 默认为 no
+pidfile /var/run/redis_6379.pid # 后台方式运行，需要pid
+# Specify the server verbosity level.
+# This can be one of:
+# debug (a lot of information, useful for development/testing)
+# verbose (many rarely useful info, but not a mess like the debug level)
+# notice (moderately verbose, what you want in production probably) 生产环境
+# warning (only very important / critical messages are logged)
+loglevel notice
+logfile "" # 日志的文件位置名
+database 16 # 默认数据库的数量
+
+```
+
+> 快照 snapshot
+
+持久化， 在规定的时间内，执行了多少次操作， 会持久化到.rdb  .aof
+
+```bash
+# 在900s内， 如果至少有一个key进行了修改， 则会出现持久化
+save 900 1
+# 在300s内， 如果至少有10个key进行了修改， 则会出现持久化
+save 300 10
+# 在60s内， 如果至少10000个key进行了修改， 则会出现持久化
+save 60 10000
+
+# 遇到错误是否继续持久化
+stop-writes-on-bgsave-error yes
+# 是否压缩rdb文件，需要cpu资源
+rdbcompression yes
+
+# 保存rdb文件的时候，进行错误的检查
+rdbchecksum yes
+
+dir ./ # rdb 文件目录保存
+
+
+
+
+```
+
+
+
+> REPLICATION  主从复制
+
+
+
+> SECURITY 安全
+
+```bash
+# redis 默认没有密码
+
+127.0.0.1:6379> ping
+PONG
+127.0.0.1:6379> config get requirepass
+1) "requirepass"
+2) ""
+# 设置密码
+127.0.0.1:6379> config set requirepass "123456"
+OK
+127.0.0.1:6379> config get requirepass
+(error) NOAUTH Authentication required.
+127.0.0.1:6379> ping
+(error) NOAUTH Authentication required.
+# 认证
+127.0.0.1:6379> auth 123456
+OK
+127.0.0.1:6379> ping
+PONG
+
+```
+
+
+
+> 限制clients
+
+
+
+```bash
+ maxclients 10000 # 最大的client连接数量
+ 
+ maxmemory <bytes> # 最大内存
+ 
+ maxmemory-policy noeviction # 内存到达上限的策略
+
+
+
+```
+
+> 面试会问到 maxmemory-policy 六种方式
+1、volatile-lru：只对设置了过期时间的key进行LRU（默认值） 
+
+2、allkeys-lru ： 删除lru算法的key   
+
+3、volatile-random：随机删除即将过期key   
+
+4、allkeys-random：随机删除   
+
+5、volatile-ttl ： 删除即将过期的   
+
+6、noeviction ： 永不过期，返回错误
+
+> APPEND ONLY AOF
+
+```bash
+appendonly no # 默认不开启aof， 使用rdb
+appendfilename "appendonly.aof" # 持久化文件的名称
+
+# appendfsync always  # 每次修改都会sync， 消耗性能
+appendfsync everysec # 每秒进行一次sync， 可能会出现丢失
+# appendfsync no # 不执行sync， 系统自己同步
+
+```
+
