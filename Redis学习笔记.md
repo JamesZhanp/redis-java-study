@@ -1198,3 +1198,280 @@ appendfsync everysec # 每秒进行一次sync， 可能会出现丢失
 
 ```
 
+
+
+
+
+## Redis 持久化
+
+### RDB （Redis Database）
+
+在指定的时间间隔内， 将内存中的数据集快照写入磁盘， 也就是snapshot快照，恢复时是直接将快照文件读到内存中
+
+会单独创建一个子进程来进行持久化，会先将数据写入到一个临时文件中，持久化过程结束，则由这次的文件进行替换之前的文件。
+
+整个过程中主进程不进行任何IO操作。
+
+进行大规模的数据恢复时， 且对于数据恢复的完整性不是非常敏感，RDB方式相对而言更加的高效。
+
+**缺点**：
+
+最后一次更新的数据可能丢失
+
+==RDB保存的默认文件是dump.rdp==
+
+
+
+> 触发机制
+
+1. save规则满足的情况下
+2. 执行flushall命令
+3. 退出redis
+
+备份自动生成一个dump.rdb
+
+> 恢复rdb
+
+将rdb文件放到redis的启动目录下即可
+
+**优点**：
+
+	1. 适合大规模的数据恢复！
+ 	2. 对数据的完整性要求不高
+
+**缺点**：
+
+	1. 需要一定对额时间间隔操作，redis意外宕机， 修改会丢失
+ 	2.  需要fork子进程， 需要占用一定的内存空间
+
+### AOF （Append Only File）
+
+以日志的形式记录每个写操作， 将redis执行过的所有指令记录下来
+
+默认不开启，需要手动开启，
+
+```bash
+appendonly no
+
+# The name of the append only file (default: "appendonly.aof")
+
+appendfilename "appendonly.aof"
+auto-aof-rewrite-percentage 100
+auto-aof-rewrite-min-size 64mb
+
+```
+
+
+
+如果aof文件有错误，浙时候redis是无法成功启动的， 需要修复
+
+redis 官方提供的修复工具 `redis-check-aof --fix appendonly.aof ` 
+
+如果文件修复正常， 在可以重启正常
+
+> 优缺点
+
+优点
+
+1. 每次修改都同步，（默认开启为每秒同步）， 则可能丢失一秒的数据
+
+   
+
+缺点
+
+1. 相对数据文件来说， aof远大于rdb， 修复的速度也比较慢
+2. aof的运行速度也较慢， 所以redis默认的持久化是rdb
+
+扩展：
+
+同时开启两种持久化方式
+
+- redis重启的时候会优先加载aof文件内来恢复数据
+- rdb数据不实时， 但更适用于数据备份， aof不断在变化， 不宜作为备份
+
+性能建议
+
+- 因为RDB文件只用作备份用途，建议在slaver上配置RDB文件，15分钟左右进行一次备份， 保留`save 900 1  `这条规则
+- 如果enable AOF好处是最恶劣情况下只会丢失2秒的数据。代价：
+  - 持续的IO
+  - AOF重写到最后rewrite过程中产生的吧新数据写到新文件不可阻止的产升堵塞。
+- 不Enable AOF， 仅仅靠Master-Slave实现高可用也可以， 同时能省下一大笔的IO支出， 也减少了rewrite的波动，但是如果出现slaver和Master同时down掉，会丢失十几分钟的数据
+
+
+
+## Redis发布订阅
+
+Redis发布订阅是一种==消息通信模式==，发送者推送消息，订阅者接收消息
+
+![image-20201206224318774](C:\Users\16255\AppData\Roaming\Typora\typora-user-images\image-20201206224318774.png)
+
+> 测试
+
+```bash
+# 订阅者
+127.0.0.1:6379> SUBSCRIBE JamesZhan
+Reading messages... (press Ctrl-C to quit)
+1) "subscribe"
+2) "JamesZhan"
+3) (integer) 1
+
+#发送者发送信息
+127.0.0.1:6379> PUBLISH JamesZhan "Hello This is The First Message From James Channel"
+(integer) 1
+#订阅者接收信息
+127.0.0.1:6379> SUBSCRIBE JamesZhan
+Reading messages... (press Ctrl-C to quit)
+1) "subscribe"
+2) "JamesZhan"
+3) (integer) 1
+1) "message"
+2) "JamesZhan"
+3) "Hello This is The First Message From James Channel"
+
+```
+
+> 原理
+
+通过SUBSCRIBE命令订阅某个评到之后， redis-server里面维护了一个字典， 字典的key就是一个个频道，而字典的值就是一个个的链表， 保存所有订阅了这个频道的客户都安，SUBSCRIBE的关键是将订阅的客户都安添加到链表当中
+
+通过PUBLISH命令向订阅者发送消息，redis-server会使用给定的频道作为key，遍历订阅的客户端将消息进行发布
+
+
+
+## Redis主从复制
+
+==数据的复制是单向的， 只能从主节点到从节点，Master以写为主， Slaver以读为主==
+
+主从复制的作用主要包括：
+
+1. 数据冗余： 主从复制是下了数据的热备份，是持久化之外的数据冗余fangshi
+2. 故障恢复： 主节点出现问题的情况下可以由从节点提供服务吗，实现快速的故障恢复
+3. 负载均衡： 在主从复制的基础上， 配合读写分离，可以由主节点提供写服务，从节点提供读服务，分担服务器的压力。 尤其在写少读多的情况下，可以通过配置多个节点分担读负载，可以大大提高redis的读的并发量
+4. 高可用基石：主从复制是哨兵和集群能够实施的基础。
+
+### 环境配置
+
+只配置从库，不配置主库
+
+```bash
+info replication # 查看主从的配置
+
+```
+
+> 修改配置文件
+
+1. 端口
+2. logfile name
+3. pid名字
+4. dumo文件名字
+
+> 启动成功
+
+```bash
+[root@localhost src]# ps -ef|grep redis
+root       2858      1  0 07:39 ?        00:00:00 redis-server 127.0.0.1:6379
+root       2983   2923  0 07:40 pts/1    00:00:00 redis-cli -p 6379
+root       3070      1  0 07:40 ?        00:00:00 redis-server 127.0.0.1:6380
+root       3161   3127  0 07:40 pts/3    00:00:00 redis-cli -p 6380
+root       3256      1  0 07:41 ?        00:00:00 redis-server 127.0.0.1:6381
+root       3347   3313  0 07:41 pts/5    00:00:00 redis-cli -p 6381
+
+```
+
+
+
+### 一主二从
+
+一主（79） 二从（80， 81）
+
+```bash
+slaveof
+```
+
+
+
+#### slave
+
+```bash
+127.0.0.1:6380> SLAVEOF 127.0.0.1 6379
+OK
+127.0.0.1:6380> info replication
+# Replication
+role:slave # 角色转变成slaver
+# master的信息
+master_host:127.0.0.1
+master_port:6379
+master_link_status:up
+master_last_io_seconds_ago:5
+master_sync_in_progress:0
+slave_repl_offset:14
+slave_priority:100
+slave_read_only:1
+connected_slaves:0
+master_replid:47a9ea51f0b6b80b9493a4f38aa41ff4b95e1637
+master_replid2:0000000000000000000000000000000000000000
+master_repl_offset:14
+second_repl_offset:-1
+repl_backlog_active:1
+repl_backlog_size:1048576
+repl_backlog_first_byte_offset:1
+repl_backlog_histlen:14
+
+```
+
+#### master
+
+```bash
+127.0.0.1:6379> info replication
+# Replication
+role:master
+connected_slaves:1
+# 从机的信息
+slave0:ip=127.0.0.1,port=6380,state=online,offset=98,lag=1
+master_replid:47a9ea51f0b6b80b9493a4f38aa41ff4b95e1637
+master_replid2:0000000000000000000000000000000000000000
+master_repl_offset:98
+second_repl_offset:-1
+repl_backlog_active:1
+repl_backlog_size:1048576
+repl_backlog_first_byte_offset:1
+repl_backlog_histlen:98
+
+```
+
+> 配置文件中配置
+
+```bash
+# slaveof <masterip> <masterport>
+
+# If the master is password protected (using the "requirepass" configuration
+# directive below) it is possible to tell the slave to authenticate before
+# starting the replication synchronization process, otherwise the master will
+# refuse the slave request.
+#
+# masterauth <master-password>
+
+```
+
+
+
+### 细节内容
+
+从机**无法**进行写操作，所有的写操作都在主机中进行，会同步到从机当中主机
+
+主机断开连接， 从机还是依旧链接主机，若此时主机回复链接，之后的写操作，从机仍然能获得
+
+如果是使用命令行配置的主从， 如果重启，则自动变成主机，不在维护之前的主从关系
+
+若再次连接充当从机，则可以再次获得之前的内容
+
+> 复制原理
+
+salve启动成功之后连接到master会发送一个sync同步命令
+
+master接受命令。启动后台的存盘进程，同时收集所有接收到的用于修改的命令，在后台进程结束之后，==master将传送整个文件至slave，并完成一次同步==
+
+- 全量复制
+  - slave接收到数据库文件数据后，将其存盘并加载到内存
+- 增量复制
+  - master将继续将新的所有收集到的修改命令一次传给slave，完成同步
