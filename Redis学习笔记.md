@@ -4,7 +4,7 @@
 
 > 目前的互联网网站的模型
 
-<img src="../img/app_server.png"/>
+<img src="img/app_server.png"/>
 
 > 为什么使用NoSQL
 
@@ -1492,6 +1492,116 @@ master接受命令。启动后台的存盘进程，同时收集所有接收到�
 
 - 通过发送命令， 让Redis服务器返回运行状态，包括主服务器和从服务器
 - 当哨兵检测到主服务器master宕机之后，会自动将slave切换成master， 通过发布订阅模式通知其他从服务器，各个哨兵之间形成监控，形成多哨兵模式
+
+文字描述一下**故障切换（failover）**的过程。假设主服务器宕机，哨兵1先检测到这个结果，系统并不会马上进行failover过程，仅仅是哨兵1主观的认为主服务器不可用，这个现象成为**主观下线**。当后面的哨兵也检测到主服务器不可用，并且数量达到一定值时，那么哨兵之间就会进行一次投票，投票的结果由一个哨兵发起，进行failover操作。切换成功后，就会通过发布订阅模式，让各个哨兵把自己监控的从服务器实现切换主机，这个过程称为**客观下线**。这样对于客户端而言，一切都是透明的。
+
+哨兵的主要功能如下：
+
+- master存活检测
+- 主从运行状况检测
+- 自动故障切换
+- 主从切换
+
+### 基本原理
+
+**投票算法+心跳机制**
+
+哨兵会像其他的哨兵，master和slaver发送消息确认是否存活，如果在指定时间内没有收到正常的回应，则惹味对方挂起（主观下线）
+
+当多个哨兵报告同一master没有响应， 根据投票算法，判断其已死亡， （标记为客观下线）， 从该节点的slave中选取一个充当新的master其余的slave指向该节点。
+
+redis的sentinel是一个分布式系统，可以在一个架构下运行多个sentinel进程，这些进程之间通过**流言协议**（gossip protocols)来接收关于主服务器是否下线的信息， 并使用**投票协议**（agreement protocols）来决定是否执行自动故障迁移， 以及选择哪个从slave服务器作为新的主服务器。
+
+主观下线：当只有**单个**sentinel实例对redis实例做出无响应的判断，此时进入主观判断，不会触发自动故障转移等操作。
+注意，一个服务器必须在 `master-down-after-milliseconds` 毫秒内， 一直返回***无效回复***才会被 Sentinel 标记为主观下线。
+
+客观下线：**多个** Sentinel 实例在对同一个服务器做出 SDOWN 判断， 并且通过 `SENTINEL is-master-down-by-addr` 命令互相交流之后， 得出的服务器下线判断。 （一个 Sentinel 可以通过向另一个 Sentinel 发送 SENTINEL is-master-down-by-addr 命令来询问对方是否认为给定的服务器已下线）
+
+从主观下线状态切换到客观下线状态并没有使用严格的法定人数算法（strong quorum algorithm）， 而是使用了**流言协议**： 如果 Sentinel 在给定的时间范围内， **从其他 Sentinel** 那里接收到了足够数量的主服务器下线报告， 那么 Sentinel 就会将主服务器的状态从主观下线改变为客观下线。 如果之后其他 Sentinel 不再报告主服务器已下线， 那么客观下线状态就会被移除。
+
+**客观**下线条件只适用于**主服务器**： 对于任何其他类型的 Redis 实例， Sentinel 在将它们判断为下线前不需要进行协商， 所以从服务器或者其他 Sentinel 永远不会达到客观下线条件。
+只要一个 Sentinel 发现某个主服务器进入了客观下线状态， 这个 Sentinel 就可能会被其他 Sentinel 推选出， 并对失效的主服务器执行自动故障迁移操作。
+
+> 测试前部分的内容参考：https://minichou.github.io/2016/03/25/Redis%20Sentinel%E5%8E%9F%E7%90%86/
+
+### Sentinel定时执行的操作
+
+1. 每个 Sentinel 以**每秒钟一次**的频率向它所知的主服务器、从服务器以及其他 Sentinel 实例发送一个 PING 命令。
+   如果一个实例（instance）距离最后一次有效回复 PING 命令的时间超过 `down-after-milliseconds` 选项所指定的值， 那么这个实例会被 Sentinel 标记为主观下线。 一个有效回复可以是： `+PONG` 、` -LOADING` 或者 `-MASTERDOWN` 。
+2. 如果一个主服务器被标记为**主观下线**， 那么正在监视这个主服务器的==所有 Sentinel== 要以**每秒一次**的频率确认主服务器的确进入了主观下线状态。
+3. 如果一个主服务器被标记为主观下线， 并且有足够数量的 Sentinel （至少要达到配置文件指定的数量）在指定的时间范围内同意这一判断， 那么这个主服务器被标记为客观下线。
+4. 在一般情况下， 每个 Sentinel 会以**每 10 秒一次**的频率向它已知的所有主服务器和从服务器发送 INFO 命令(其主从的拓扑关系图）。 当一个主服务器被 Sentinel 标记为**客观下线**时， Sentinel 向下线主服务器的所有从服务器发送 INFO 命令的频率会从 10 秒一次改为**每秒一次**。
+5. 当没有足够数量的 Sentinel 同意主服务器已经下线， 主服务器的客观下线状态就会被移除。 当主服务器重新向 Sentinel 的 PING 命令返回有效回复时， 主服务器的主管下线状态就会被移除。
+
+### 自动发现哨兵（sentinel）和从服务器
+
+sentinel与sentinel之间可以进行**信息交换**和**检测可用性**。
+
+1. 无需为运行的每个sentinel分别设置其他的sentinel地址，因为sentinel可以通过redis内部的**发布\订阅功能**来自动的发现正在监视相同主机服务器的其他sentinel，这个功能是通过 `sentinel:hello`发送消息来实现的。
+2. 不必列出所有slave的信息，因为sentinel可以通过询问主服务器获取从服务器信息。
+
+每个 Sentinel 会以每**两秒一次**的频率， 通过发布与订阅功能， 向被它监视的**所有主服务器和从服务器**的 sentinel:hello 频道发送一条信息， 信息中包含了 Sentinel 的 IP 地址、端口号和运行 ID （runid）。
+
+每个 Sentinel 都订阅了被它监视的所有主服务器和从服务器的 sentinel:hello 频道， 查找之前未出现过的 sentinel （looking for unknown sentinels）。
+
+### Sentinel执行failover流程
+
+1. sentinel发现master下线，修改其状态为**sdown**主观下线；
+2. sentinel和其他sentinel确认master是否down掉，确认其状态为**odown**客观下线；
+3. 对我们的当前纪元进行自增（详情请参考 Raft leader election ）， 并尝试在这个纪元中当选(即首先发现master down掉的sentinel有优先权当选为leader)；
+4. 如果当选失败，那么在设定的故障迁移超时时间的两倍之后，重新尝试当选。如果当选成功，那么执行以下步骤；
+5. 选出一个从服务器，并将它升级为主服务器；
+6. leader选出一个slave作为**master**，发送`slaveof no one`命令；
+7. 通过**发布与订阅**功能，将更新后的配置传播给所有其他 Sentinel，其他 Sentinel 对它们自己的配置进行更新；
+8. 并通过给其他slave发送`slaveof master`命令告知其他slave新的master；
+9. 当所有从服务器都已经开始复制新的主服务器时，领头Sentinel终止这次故障迁移操作。
+
+### Sentinel领头羊选举
+
+Sentinel 自动故障迁移使用 Raft 算法来选举领头（leader） Sentinel ， 从而确保在一个给定的纪元（epoch）里， 只有一个领头产生。
+
+这表示在同一个纪元中， 不会有两个 Sentinel 同时被选中为领头， 并且各个 Sentinel 在同一个纪元中只会对一个领头进行投票。
+
+更高的配置纪元总是优于较低的纪元， 因此每个 Sentinel 都会主动使用更新的纪元来代替自己的配置。
+
+简单来说， 我们可以将 Sentinel 配置看作是一个带有版本号的状态。 一个状态会以最后写入者胜出（last-write-wins）的方式（也即是，最新的配置总是胜出）传播至所有其他 Sentinel 。
+
+举个例子， 当出现网络分割（network partitions）时， 一个 Sentinel 可能会包含了较旧的配置， 而当这个 Sentinel 接到其他 Sentinel 发来的版本更新的配置时， Sentinel 就会对自己的配置进行更新。
+
+如果要在网络分割出现的情况下仍然保持一致性， 那么应该使用 min-slaves-to-write 选项， 让主服务器在连接的从实例少于给定数量时停止执行写操作， 与此同时， 应该在每个运行 Redis 主服务器或从服务器的机器上运行 Redis Sentinel 进程。
+
+### Sentinel主master选举
+
+Sentinel 使用以下规则来选择新的主服务器：
+
+- 在失效主服务器属下的从服务器当中， 那些被标记为主观下线、已断线、或者最后一次回复 PING 命令的时间大于五秒钟的从服务器都会被淘汰。
+- 在失效主服务器属下的从服务器当中， 那些与失效主服务器连接断开的时长超过 down-after 选项指定的时长十倍的从服务器都会被淘汰。
+- 我们选出**复制偏移量**（replication offset）最大的那个从服务器作为**新的主服务器**； 如果复制偏移量不可用， 或者从服务器的复制偏移量相同， 那么带有**最小运行 ID** 的那个从服务器成为新的主服务器。
+
+### Sentinel与redis实例之间的通信
+
+以下是sentinel节点所接受的命令：
+
+- PING ：返回 PONG 。
+- SENTINEL masters ：列出所有被监视的主服务器，以及这些主服务器的当前状态。
+- SENTINEL slaves ：列出给定主服务器的所有从服务器，以及这些从服务器的当前状态。
+- SENTINEL get-master-addr-by-name ： 返回给定名字的主服务器的 IP 地址和端口号。 如果这个主服务器正在执行故障转移操作， 或者针对这个主服务器的故障转移操作已经完成， 那么这个命令返回新的主服务器的 IP 地址和端口号。
+- SENTINEL reset ： 重置所有名字和给定模式 pattern 相匹配的主服务器。 pattern 参数是一个 Glob 风格的模式。 重置操作清除主服务器目前的所有状态， 包括正在执行中的故障转移， 并移除目前已经发现和关联的， 主服务器的所有从服务器和 Sentinel 。
+- SENTINEL failover ： 当主服务器失效时， 在不询问其他 Sentinel 意见的情况下， 强制开始一次自动故障迁移 （不过发起故障转移的 Sentinel 会向其他 Sentinel 发送一个新的配置，其他 Sentinel 会根据这个配置进行相应的更新）。
+
+sentinel连接一个redis实例的时候，会创建cmd和pub/sub两个链接，cmd连接创建成功时候立即发送一个ping命令，pub/sub连接创建成功的时候立即去监听hello channel。
+通过cmd连接给redis发送命令，通过pub/sub连接得到redis实例上的其他sentinel实例。
+sentinel与maste/slave的交互主要包括：
+
+1. PING:sentinel向其发送PING以了解其状态（是否下线）
+2. INFO:sentinel向其发送INFO以获取replication相关的信息，通过这个命令可以获取master的slaves
+3. PUBLISH:sentinel向其监控的master/slave发布本身的信息及master相关的配置
+4. SUBSCRIBE:sentinel通过订阅master/slave的”sentinel:hello“频道以获取其它正在监控相同服务的sentinels
+
+sentinel与sentinel的交互主要包括：
+
+1. PING:sentinel向slave发送PING以了解其状态（是否下线）
+2. SENTINEL is-master-down-by-addr：和其他sentinel协商master状态，如果master odown，则投票选出leader做fail over
 
 > 测试
 
